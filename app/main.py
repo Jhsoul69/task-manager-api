@@ -7,30 +7,30 @@ from . import models, database
 from .auth import router as auth_router
 from .routers import projects, tasks
 
-# ✅ Load environment variables
+# ✅ Load .env variables
 load_dotenv()
 
-# ✅ Create database tables (safe if already exist)
+# ✅ Create DB tables
 models.Base.metadata.create_all(bind=database.engine)
 
-# ✅ Initialize FastAPI app
+# ✅ Create FastAPI app
 app = FastAPI(
     title="MacV Task Manager API",
     description="A lightweight task/project management system built with FastAPI",
     version="1.0.0",
 )
 
-# ✅ Define allowed origins explicitly
+# ✅ CORS FIX for Railway: allow specific domain OR allow "*"
 origins = [
+    "https://task-manager-api-production.up.railway.app",  # ✅ Your deployed frontend/API domain
     "http://localhost",
     "http://localhost:8000",
-    "https://task-manager-api-production.up.railway.app"  # ✅ Replace if your Railway URL is different
+    "*",  # 👈 KEEP THIS ONLY FOR DEVELOPMENT!
 ]
 
-# ✅ Setup CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # ❌ Don't use ["*"] in production
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -45,4 +45,5 @@ app.include_router(tasks.router)
 @app.get("/")
 def root():
     return {"message": "Welcome to the MacV Task Manager API"}
+
 

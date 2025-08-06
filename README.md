@@ -20,9 +20,9 @@ A full-featured Task & Project Management API built with **FastAPI**, **PostgreS
 
 ## 🔗 🔴 Live Deployed API (Public Access)
 
-> 🌐 **Base URL:** [https://b1a2ff75723e88.lhr.life](https://b1a2ff75723e88.lhr.life)  
+> 🌐 **Base URL:** https://localhost:8000/ 
 > 🔒 Access: All routes require JWT Bearer token (except `/register`, `/token`)  
-> 📄 Docs: `https://b1a2ff75723e88.lhr.life/docs`
+> 📄 Docs: `https://localhost:8000/docs`
 
 **Sample Test User:**
 
